@@ -1,10 +1,19 @@
-import 'package:appjamgrup51/services/authentication_service.dart';
-import 'package:stacked/stacked_annotations.dart';
-import 'package:stacked_services/stacked_services.dart';
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
-final locator=StackedLocator.instance;
+// **************************************************************************
+// StackedLocatorGenerator
+// **************************************************************************
+
+// ignore_for_file: public_member_api_docs, implementation_imports, depend_on_referenced_packages
+
+import 'package:appjamgrup51/services/authentication_service.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:stacked_shared/stacked_shared.dart';
+
+final locator = StackedLocator.instance;
 
 Future<void> setupLocator({
+
   String? environment,
   EnvironmentFilter? environmentFilter,
 }) async {
@@ -12,8 +21,9 @@ Future<void> setupLocator({
   locator.registerEnvironment(
       environment: environment, environmentFilter: environmentFilter);
 
-// Register dependencies
 
+// Register dependencies
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => AuthenticationService());
+  locator.registerLazySingleton(() => SnackbarService());
 }

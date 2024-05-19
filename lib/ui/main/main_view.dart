@@ -27,11 +27,12 @@ class _MainViewState extends State<MainView> {
                 icon: Icon(Icons.home),
                 label: "AnaSayfa"),
             NavigationDestination(
-                icon: Icon(Icons.person),
-                label: "Profil"),
-            NavigationDestination(
                 icon: Icon(Icons.alt_route_rounded),
                 label: "Bilgi Paylaşımı"),
+            NavigationDestination(
+                icon: Icon(Icons.person),
+                label: "Profil"),
+
           ],
         ),
         body: <Widget>[
@@ -47,6 +48,7 @@ class _MainViewState extends State<MainView> {
               ),
             ),
           ),
+           BilgiPaylasimi(),
           Card(
             shadowColor: Colors.transparent,
             margin: const EdgeInsets.all(8.0),
@@ -59,7 +61,7 @@ class _MainViewState extends State<MainView> {
               ),
             ),
           ),
-          const BilgiPaylasimi()
+
 
         ][currentPageIndex]
     );

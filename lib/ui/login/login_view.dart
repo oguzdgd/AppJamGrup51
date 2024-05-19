@@ -79,8 +79,8 @@ class LoginView extends StackedView<LoginViewModel> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      viewModel.signIn(
+                    onPressed: () async{
+                     await viewModel.signIn(
                           emailcontroller.text, passwordcontroller.text);
                     },
                     style: ElevatedButton.styleFrom(
@@ -105,8 +105,8 @@ class LoginView extends StackedView<LoginViewModel> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextButton(
-                      onPressed: () {
-                        viewModel.goToRegister();
+                      onPressed: ()  {
+                         viewModel.goToRegister();
                       },
                       child: const Text(
                         'Kayıt Ol',

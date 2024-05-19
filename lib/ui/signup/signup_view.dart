@@ -9,7 +9,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
   final TextEditingController surnamecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
-  final TextEditingController passwordCheckcontroller = TextEditingController();
+  final TextEditingController confirmpasswordController = TextEditingController();
 
   @override
   Widget builder(BuildContext context, SignUpViewModel viewModel, Widget? child) {
@@ -111,7 +111,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
 
                 //ŞİFRE TEKRARI
                 TextField(
-                  controller: passwordCheckcontroller,
+                  controller: confirmpasswordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -130,7 +130,7 @@ class SignUpView extends StackedView<SignUpViewModel> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      viewModel.signUp(emailcontroller.text, passwordcontroller.text);
+                      viewModel.signUp(emailcontroller.text, passwordcontroller.text,confirmpasswordController.text,namecontroller.text,surnamecontroller.text,);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 15.0), backgroundColor: Colors.blue.shade700,
