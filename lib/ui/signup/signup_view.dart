@@ -1,15 +1,18 @@
+import 'package:appjamgrup51/ui/signup/signup_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-class SignUpView extends StatelessWidget {
+class SignUpView extends StackedView<SignUpViewModel> {
   SignUpView({super.key});
 
   final TextEditingController namecontroller = TextEditingController();
   final TextEditingController surnamecontroller = TextEditingController();
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
+  final TextEditingController passwordCheckcontroller = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(BuildContext context, SignUpViewModel viewModel, Widget? child) {
     // Ekran boyutlarını al
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -43,12 +46,12 @@ class SignUpView extends StatelessWidget {
 
                 //İSİM
                 TextField(
-                  controller: emailcontroller,
+                  controller: namecontroller,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'İsim',
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide.none,
@@ -59,12 +62,12 @@ class SignUpView extends StatelessWidget {
 
                 //SOYİSİM
                 TextField(
-                  controller: emailcontroller,
+                  controller: surnamecontroller,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Soyisim',
-                    prefixIcon: Icon(Icons.email),
+                    prefixIcon: Icon(Icons.subtitles_rounded),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: BorderSide.none,
@@ -108,7 +111,7 @@ class SignUpView extends StatelessWidget {
 
                 //ŞİFRE TEKRARI
                 TextField(
-                  controller: passwordcontroller,
+                  controller: passwordCheckcontroller,
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -127,7 +130,7 @@ class SignUpView extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Giriş işlemleri burada yapılacak
+                      viewModel.signUp(emailcontroller.text, passwordcontroller.text);
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(vertical: 15.0), backgroundColor: Colors.blue.shade700,
@@ -146,21 +149,23 @@ class SignUpView extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 // Kayıt Olma ve Şifremi Unuttum Linkleri
-                TextButton(
-                  onPressed: () {
-                    // Kayıt olma işlemleri burada yapılacak
-                  },
-                  child:  RichText(
-                   text: TextSpan(
-                     children: [
-                       TextSpan(text:"Zaten bir hesaba sahip misin? "),
-                       TextSpan(text: 'Login',style: TextStyle(
-                         fontWeight: FontWeight.bold,
-                         color: Colors.white,
-                       ),)
-                     ]
-                   ),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Zaten bir hesaba sahip misiniz?",style: TextStyle(color: Colors.white),),
+                    TextButton(
+                      onPressed: () {
+                        viewModel.goToLogin();
+                      },
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.white,
+
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -168,5 +173,12 @@ class SignUpView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+
+
+  @override
+  SignUpViewModel viewModelBuilder(BuildContext context) {
+    return SignUpViewModel();
   }
 }

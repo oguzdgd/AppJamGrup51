@@ -1,13 +1,16 @@
+import 'package:appjamgrup51/ui/login/login_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StackedView<LoginViewModel> {
   LoginView({super.key});
 
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget builder(
+      BuildContext context, LoginViewModel viewModel, Widget? child) {
     // Ekran boyutlarını al
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -30,14 +33,16 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-                // Uygulama Logosunu Buraya Ekleyebilirsiniz
+
+                // TODO Uygulama logosonu buraya ekle
                 const Icon(
                   Icons.lock_outline,
                   size: 100,
                   color: Colors.white,
                 ),
                 const SizedBox(height: 50),
-                // Email TextField
+
+                // EMAİL
                 TextField(
                   controller: emailcontroller,
                   decoration: InputDecoration(
@@ -52,14 +57,15 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Şifre TextField
+
+                // ŞİFRE
                 TextField(
                   controller: passwordcontroller,
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
-                    hintText: 'Password',
+                    hintText: 'Şifre',
                     prefixIcon: Icon(Icons.lock),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -68,21 +74,24 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Giriş Butonu
+
+                // GİRİŞ BUTONU
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Giriş işlemleri burada yapılacak
+                      viewModel.signIn(
+                          emailcontroller.text, passwordcontroller.text);
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 15.0), backgroundColor: Colors.blue.shade700,
+                      padding: EdgeInsets.symmetric(vertical: 15.0),
+                      backgroundColor: Colors.blue.shade700,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                      ), // Buton rengi
+                      ),
                     ),
                     child: const Text(
-                      'Login',
+                      'Giriş Yap',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -93,17 +102,16 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 20),
                 // Kayıt Olma ve Şifremi Unuttum Linkleri
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextButton(
                       onPressed: () {
-                        // Kayıt olma işlemleri burada yapılacak
+                        viewModel.goToRegister();
                       },
                       child: const Text(
-                        'Sign Up',
+                        'Kayıt Ol',
                         style: TextStyle(
                           color: Colors.white,
-
                         ),
                       ),
                     ),
@@ -112,11 +120,9 @@ class LoginView extends StatelessWidget {
                         // Şifremi unuttum işlemleri burada yapılacak
                       },
                       child: const Text(
-                        'Forgot Password?',
+                        'Şifremi unuttum',
                         style: TextStyle(
-                          color: Colors.white,
-
-                        ),
+                            color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
@@ -127,5 +133,10 @@ class LoginView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  LoginViewModel viewModelBuilder(BuildContext context) {
+    return LoginViewModel();
   }
 }

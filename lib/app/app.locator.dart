@@ -1,3 +1,4 @@
+import 'package:appjamgrup51/services/authentication_service.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -14,4 +15,5 @@ Future<void> setupLocator({
 // Register dependencies
 
   locator.registerLazySingleton(() => NavigationService());
+  locator.registerLazySingleton(() => AuthenticationService());
 }
