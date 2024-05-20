@@ -8,13 +8,15 @@ import 'package:stacked_services/stacked_services.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  User? get currentUser => _firebaseAuth.currentUser;
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final _snackbarService = locator<SnackbarService>();
   final _navigationService = locator<NavigationService>();
   static const int snackbarDuration = 2000;
 
-  User? get currentUser => _firebaseAuth.currentUser;
+
 
   Future<bool> userLoggedIn() async {
     return _firebaseAuth.currentUser != null;

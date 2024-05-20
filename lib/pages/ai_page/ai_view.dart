@@ -4,14 +4,14 @@ import 'package:appjamgrup51/services/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class BilgiPaylasimi extends StatefulWidget {
-  const BilgiPaylasimi({super.key});
+class AIView extends StatefulWidget {
+  const AIView({super.key});
 
   @override
-  State<BilgiPaylasimi> createState() => _BilgiPaylasimiState();
+  State<AIView> createState() => _AIViewState();
 }
 
-class _BilgiPaylasimiState extends State<BilgiPaylasimi> {
+class _AIViewState extends State<AIView> {
   final _authenticationService = locator<AuthenticationService>();
   final _navigationService = locator<NavigationService>();
 

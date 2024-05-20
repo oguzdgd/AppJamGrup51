@@ -1,4 +1,5 @@
-import 'package:appjamgrup51/pages/bilgi_paylasimi.dart';
+import 'package:appjamgrup51/pages/ai_page/ai_view.dart';
+import 'package:appjamgrup51/pages/profile_page/profile_view.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatefulWidget {
@@ -48,19 +49,8 @@ class _MainViewState extends State<MainView> {
               ),
             ),
           ),
-           BilgiPaylasimi(),
-          Card(
-            shadowColor: Colors.transparent,
-            margin: const EdgeInsets.all(8.0),
-            child: SizedBox.expand(
-              child: Center(
-                child: Text(
-                  'Ayarlar',
-                  style: theme.textTheme.titleLarge,
-                ),
-              ),
-            ),
-          ),
+           AIView(),
+          ProfileView()
 
 
         ][currentPageIndex]
